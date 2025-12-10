@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 1.98,
+      "transcription": "SO GREATGOD GOD MORNIN",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\0c37f1e3-884e-4e8f-91d8-29732216f89a.json"
+}

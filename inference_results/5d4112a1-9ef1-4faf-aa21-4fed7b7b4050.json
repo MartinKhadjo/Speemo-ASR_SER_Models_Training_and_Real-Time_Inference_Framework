@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 5.88,
+      "transcription": "es tut mir leid was ich gestern gesagt hab das warnch in ordnung von mir ich werd dar\u00fcber nachdenken",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\5d4112a1-9ef1-4faf-aa21-4fed7b7b4050.json"
+}

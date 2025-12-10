@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 9.18,
+      "transcription": "ich bin ins patientenzimer reingekomen es hat eckelhaft geruchen",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\a63c4409-9760-4f7f-bd34-e016da0d5007.json"
+}

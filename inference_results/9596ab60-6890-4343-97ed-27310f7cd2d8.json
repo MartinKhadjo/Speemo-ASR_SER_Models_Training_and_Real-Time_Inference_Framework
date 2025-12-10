@@ -1,0 +1,29 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 0.12,
+      "transcription": "",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 0.72,
+      "end_sec": 3.96,
+      "transcription": "ich ich habe nichts gesehen",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 5.16,
+      "end_sec": 7.08,
+      "transcription": "habe das gar nicht gesehen",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 7.95,
+      "end_sec": 11.94,
+      "transcription": "habe das gar nicht mitbekomen es ging so schnel",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\9596ab60-6890-4343-97ed-27310f7cd2d8.json"
+}

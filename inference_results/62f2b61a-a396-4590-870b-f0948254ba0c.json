@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 4.99,
+      "transcription": "junge ich hab dir gesagt du solst mich in ruhe lasen meine sache nicht mehr anfasen schreib mir nicht mer",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\62f2b61a-a396-4590-870b-f0948254ba0c.json"
+}

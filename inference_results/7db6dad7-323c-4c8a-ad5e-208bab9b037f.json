@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.18,
+      "end_sec": 13.89,
+      "transcription": "THIS IS SO DEMANDING IT IS VERY RERY HARD WE HAVE TO SOLVE THIS PROBLEM I AM SO SAD I DON'T KNOW WHAT TO DO BUT",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\7db6dad7-323c-4c8a-ad5e-208bab9b037f.json"
+}
