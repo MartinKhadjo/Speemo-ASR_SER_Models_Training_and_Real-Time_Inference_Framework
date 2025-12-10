@@ -1,0 +1,6 @@
+{
+  "transcription": "ING G",
+  "emotion": "disgust",
+  "output_file": "inference_results\\946b4f09-acf8-4b91-9d38-48c7663b52fe.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_ASR_SER"
+}

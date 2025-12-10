@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 7.273375,
+      "transcription": "als is so ein schner tag last ein vorausgehen und spas haben ja las es gemiesen",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\e8015cf4-f131-4d32-8641-fe374f0b1cc9.json"
+}

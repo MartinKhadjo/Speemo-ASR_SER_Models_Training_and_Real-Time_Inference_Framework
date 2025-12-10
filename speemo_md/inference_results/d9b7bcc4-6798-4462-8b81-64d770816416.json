@@ -1,0 +1,6 @@
+{
+  "transcription": "PEOPLEDISTRUS ME TO MY CR",
+  "emotion": "neutral",
+  "output_file": "inference_results\\d9b7bcc4-6798-4462-8b81-64d770816416.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_ASR_SER"
+}

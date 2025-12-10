@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.18,
+      "end_sec": 13.89,
+      "transcription": "",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\80579ba4-9d8c-4fb5-a49d-7c8ede3baa11.json"
+}

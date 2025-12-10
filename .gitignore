@@ -1,4 +1,10 @@
 # Big data & artifacts
-data/
-models/
-resources/
+speemo_sd/data/
+speemo_sd/models/
+speemo_sd/resources/
+
+
+
+speemo_md/data/
+speemo_md/models/
+speemo_md/resources/

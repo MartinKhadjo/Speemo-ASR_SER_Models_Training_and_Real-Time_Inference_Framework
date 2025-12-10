@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/shutil.py", line 816, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/processed/train/asr/en/common_voice_en_13744.mp3' -> 'data/processed/val/asr/en/common_voice_en_13744.mp3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/run.py", line 145, in <module>
+    main()
+  File "/workspace/run.py", line 142, in main
+    args.func(args)
+  File "/workspace/run.py", line 18, in run_preprocess
+    preprocess_data(
+  File "/workspace/src/preprocessing.py", line 470, in preprocess_data
+    split_data(proc_asr_en, "data/processed/val/asr/en")
+  File "/workspace/src/preprocessing.py", line 324, in split_data
+    shutil.move(src, dst)
+  File "/usr/lib/python3.10/shutil.py", line 836, in move
+    copy_function(src, real_dst)
+  File "/usr/lib/python3.10/shutil.py", line 434, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.10/shutil.py", line 254, in copyfile
+    with open(src, 'rb') as fsrc:
+FileNotFoundError: [Errno 2] No such file or directory: 'data/processed/train/asr/en/common_voice_en_13744.mp3'

@@ -1,0 +1,43 @@
+[2025-08-21 10:14:27,544] torch.distributed.run: [WARNING] master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+/usr/bin/python3: can't open file '/workspace/train.py': [Errno 2] No such file or directory
+[2025-08-21 10:14:32,662] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 2) local_rank: 0 (pid: 1013170) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 7, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/workspace/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-21_10:14:32
+  host      : w23g0012.hpc.itc.rwth-aachen.de
+  rank      : 0 (local_rank: 0)
+  exitcode  : 2 (pid: 1013170)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/workspace/run.py", line 145, in <module>
+    main()
+  File "/workspace/run.py", line 142, in main
+    args.func(args)
+  File "/workspace/run.py", line 60, in run_train
+    subprocess.run(cmd, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['torchrun', '--nproc_per_node=1', '--rdzv_id=training', '--rdzv_backend=c10d', '--rdzv_endpoint=127.0.0.1:29500', '/workspace/train.py', '--device=cuda', '--asr_learning_rate=1e-05', '--asr_batch_size=4', '--asr_epochs=10', '--asr_patience=2', '--asr_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_85_asr', '--asr_lang=en', '--ser_learning_rate=1e-05', '--ser_batch_size=4', '--ser_epochs=10', '--ser_dropout=0.3', '--ser_patience=2', '--ser_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_85_ser', '--ser_lang=en']' returned non-zero exit status 1.
+srun: error: w23g0012: task 0: Exited with exit code 1

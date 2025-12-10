@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speemo - AI-based Speech and Emotion Recognition for Audio Files and Real-Time Inference</title>
+  <link rel="stylesheet" href="static/style.css">
+  <!-- Load Socket.IO client library from the server (Flask-SocketIO provides it) -->
+  <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h2>Speemo - AI-based Speech and Emotion Recognition for Audio Files and Real-Time Inference</h2>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================== TRAINING SECTION =========================== -->
+    <section class="form-container" id="trainingSection">
+      <h2>Set Training Hyperparameters</h2>
+      <form action="/train" method="POST" id="trainForm">
+
+        <!-- ===== ASR HYPERPARAMETERS ===== -->
+        <h3>ASR Model</h3>
+
+        <label for="asr_learning_rate">ASR Learning Rate (0.1 to 0.000001):</label>
+        <input type="number"
+               id="asr_learning_rate"
+               name="asr_learning_rate"
+               step="0.000001"
+               min="0.000001"
+               max="0.1"
+               placeholder="e.g., 0.001"
+               required />
+
+        <label for="asr_batch_size">ASR Batch Size:</label>
+        <input type="number"
+               id="asr_batch_size"
+               name="asr_batch_size"
+               min="1"
+               placeholder="e.g., 32"
+               required />
+
+        <label for="asr_epochs">ASR Number of Epochs:</label>
+        <input type="number"
+               id="asr_epochs"
+               name="asr_epochs"
+               min="1"
+               placeholder="e.g., 10"
+               required />
+
+        <label for="asr_patience">ASR Early Stopping Patience:</label>
+        <input type="number"
+               id="asr_patience"
+               name="asr_patience"
+               min="1"
+               placeholder="e.g., 5"
+               required />
+
+        <label for="asr_lang">ASR Language:</label>
+        <select id="asr_lang" name="asr_lang" required>
+          <option value="en">English</option>
+          <option value="de">German</option>
+        </select>
+
+        <!-- ===== SER HYPERPARAMETERS ===== -->
+        <h3>SER Model</h3>
+
+        <label for="ser_learning_rate">SER Learning Rate (0.1 to 0.000001):</label>
+        <input type="number"
+               id="ser_learning_rate"
+               name="ser_learning_rate"
+               step="0.000001"
+               min="0.000001"
+               max="0.1"
+               placeholder="e.g., 0.001"
+               required />
+
+        <label for="ser_batch_size">SER Batch Size:</label>
+        <input type="number"
+               id="ser_batch_size"
+               name="ser_batch_size"
+               min="1"
+               placeholder="e.g., 32"
+               required />
+
+        <label for="ser_epochs">SER Number of Epochs:</label>
+        <input type="number"
+               id="ser_epochs"
+               name="ser_epochs"
+               min="1"
+               placeholder="e.g., 10"
+               required />
+
+        <label for="ser_dropout">SER Dropout Rate (0 to 1):</label>
+        <input type="number"
+               id="ser_dropout"
+               name="ser_dropout"
+               step="0.1"
+               min="0"
+               max="1"
+               placeholder="e.g., 0.5"
+               required />
+
+        <label for="ser_patience">SER Early Stopping Patience:</label>
+        <input type="number"
+               id="ser_patience"
+               name="ser_patience"
+               min="1"
+               placeholder="e.g., 5"
+               required />
+
+        <label for="ser_lang">SER Language:</label>
+        <select id="ser_lang" name="ser_lang" required>
+          <option value="en">English</option>
+          <option value="de">German</option>
+        </select>
+
+        <!-- ===== COMPUTE DEVICE ===== -->
+        <label for="device">Compute Device:</label>
+        <select id="device" name="device" required>
+          <option value="cuda">GPU (cuda)</option>
+          <option value="cpu">CPU</option>
+        </select>
+        <br><br>
+
+        <!-- ===== DATA PREPROCESSING CONTROLS ===== -->
+        <!-- Master toggle -->
+        <label for="skip_preprocessing">
+          <input type="checkbox" id="skip_preprocessing" name="skip_preprocessing" value="on">
+          Skip All Preprocessing
+        </label>
+        <input type="hidden" name="skip_preprocessing" value="off">
+        <br>
+
+        <!-- Individual toggles (ASR/Emotion/Splitting/Tokenizer) -->
+        <label for="skip_splitting">
+          <input type="checkbox" id="skip_splitting" name="skip_splitting" value="on">
+          Skip Data Splitting
+        </label>
+        <input type="hidden" name="skip_splitting" value="off">
+        <br>
+
+        <label for="skip_preprocessing_asr">
+          <input type="checkbox" id="skip_preprocessing_asr" name="skip_preprocessing_asr" value="on">
+          Skip ASR Preprocessing
+        </label>
+        <input type="hidden" name="skip_preprocessing_asr" value="off">
+        <br>
+
+        <label for="skip_preprocessing_emotion">
+          <input type="checkbox" id="skip_preprocessing_emotion" name="skip_preprocessing_emotion" value="on">
+          Skip Emotion Preprocessing
+        </label>
+        <input type="hidden" name="skip_preprocessing_emotion" value="off">
+        <br>
+
+        <label for="skip_tokenizer">
+          <input type="checkbox" id="skip_tokenizer" name="skip_tokenizer" value="on">
+          Skip Tokenizer Training
+        </label>
+        <input type="hidden" name="skip_tokenizer" value="off">
+        <br>
+
+
+        <!-- ===== CHECKPOINT HANDLING ===== -->
+        <label for="existing_checkpoint">Choose Existing Checkpoint:</label>
+        <select id="existing_checkpoint" name="existing_checkpoint">
+          <option value="">— start a new run —</option>
+          {% for cp in checkpoints %}
+            <option value="{{ cp }}">{{ cp }}</option>
+          {% endfor %}
+        </select>
+        <br>
+
+        <label for="checkpoint_name">Or Enter New Checkpoint Name:</label>
+        <input
+          type="text"
+          id="checkpoint_name"
+          name="checkpoint_name"
+          placeholder="e.g., my_experiment" />
+
+        <button type="submit" id="submitBtn">Start Training</button>
+
+      </form>
+
+      <!-- NEW: Button to go back to inference once training is complete -->
+      <div id="postTraining" style="display:none; text-align:center; margin-top:20px;">
+        <p>Training completed successfully.</p>
+        <button onclick="window.location.href='/'">Go to Inference</button>
+      </div>
+
+      <!-- =========================== Submit to Slurm (new API) =========================== -->
+      <hr style="margin: 32px 0;">
+      <h2>Submit to Slurm (new API)</h2>
+      <form id="train-form">
+        <h3>ASR</h3>
+        <label>LR <input type="number" step="0.000001" name="asr_learning_rate" value="0.00001"></label>
+        <label>Batch <input type="number" name="asr_batch_size" value="4"></label>
+        <label>Epochs <input type="number" name="asr_epochs" value="20"></label>
+        <label>Patience <input type="number" name="asr_patience" value="3"></label>
+        <label>Lang
+          <select name="asr_lang"><option>en</option><option>de</option></select>
+        </label>
+
+        <h3>SER</h3>
+        <label>LR <input type="number" step="0.000001" name="ser_learning_rate" value="0.00001"></label>
+        <label>Batch <input type="number" name="ser_batch_size" value="16"></label>
+        <label>Epochs <input type="number" name="ser_epochs" value="20"></label>
+        <label>Patience <input type="number" name="ser_patience" value="3"></label>
+        <label>Dropout <input type="number" step="0.05" name="ser_dropout" value="0.2"></label>
+        <label>Lang
+          <select name="ser_lang"><option>en</option><option>de</option></select>
+        </label>
+
+        <h3>Job</h3>
+        <label>Checkpoint name <input name="checkpoint_name" placeholder="(auto)"></label>
+        <label>Time limit <input name="time_limit" value="04:00:00"></label>
+        <label>GPUs <input type="number" name="gpus" value="1"></label>
+        <label>CPUs <input type="number" name="cpus" value="8"></label>
+        <label>Mem (GB) <input type="number" name="mem_gb" value="32"></label>
+        <label>Device
+          <select name="device">
+            <option value="cuda" selected>cuda</option>
+            <option value="cpu">cpu</option>
+          </select>
+        </label>
+
+        <button type="submit">Submit to Slurm</button>
+      </form>
+      <pre id="submit-out"></pre>
+      <!-- ========================= End Submit to Slurm (new API) ========================= -->
+
+    </section>
+
+    <!-- =========================== TRAINING LOGS & STATUS SECTION =========================== -->
+    <section class="logs-container">
+      <h2>Training Logs</h2>
+      <div id="logs">
+        <p>Logs will be displayed here as training progresses.</p>
+      </div>
+    </section>
+
+    <section class="status-container">
+      <h2>Training Status</h2>
+      <p id="status">Waiting for training to start...</p>
+    </section>
+
+    <!-- =========================== INFERENCE SECTION =========================== -->
+    <section class="inference-container" style="margin-top: 30px;">
+      <h2>Inference</h2>
+      <!-- Model selector (MOVED INSIDE FORM + name fixed per backend expectation) -->
+
+      <h3>File-Based Inference</h3>
+      <!-- ADDED: action/method/enctype as a graceful fallback -->
+      <form id="inference-form" action="/process_audio_inference" method="POST" enctype="multipart/form-data">
+        <label for="model_choice_inference">Select Trained Model:</label>
+        <select id="model_choice_inference" name="model_choice_inference" required>
+          {% for cp in checkpoints %}
+          <option value="{{ cp }}">{{ cp }}</option>
+          {% endfor %}
+        </select>
+        <p id="modelLoadStatus" style="color: green; font-weight: bold;"></p>
+
+        <label for="inferenceFile">Select an Audio File:</label><br><br>
+        <!-- UPDATED: broader accept list matching backend decoders -->
+        <input type="file" id="inferenceFile" name="file" accept="audio/wav,audio/mpeg,audio/mp4,audio/x-m4a,audio/flac,audio/ogg,audio/webm" required />
+        <button type="submit">Infer</button>
+      </form>
+      <h3>File-Based Inference Results (JSON)</h3>
+      <pre id="inferenceResult" style="background-color: #f9f9f9; padding: 10px;"></pre>
+
+      <h3>Real-Time Streaming Inference</h3>
+      <label for="model_choice_streaming">Select Trained Model:</label>
+      <select id="model_choice_streaming" name="model_choice">
+        {% for cp in checkpoints %}
+        <option value="{{ cp }}">{{ cp }}</option>
+        {% endfor %}
+      </select>
+      <button id="startStreaming">Start Streaming</button>
+      <button id="stopStreaming" disabled>Stop Streaming</button>
+      <h3>Real-Time Inference Results (JSON)</h3>
+      <div id="streamingResults" style="background-color: #f9f9f9; padding: 10px; max-height:300px; overflow-y:auto;"></div>
+      <button id="downloadStreaming" disabled>Download Streaming Results</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Multitask Training Dashboard | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    (function () {
+      const master = document.getElementById('skip_preprocessing');
+      const ids = [
+        'skip_splitting',
+        'skip_preprocessing_asr',
+        'skip_preprocessing_emotion',
+        'skip_tokenizer'
+      ];
+
+      if (!master) return;
+
+      const children = ids.map(id => document.getElementById(id)).filter(Boolean);
+
+      // When master changes, toggle all children.
+      master.addEventListener('change', () => {
+        children.forEach(ch => { ch.checked = master.checked; });
+      });
+
+      // Keep master checked only if all children are checked.
+      const syncMaster = () => {
+        master.checked = children.length > 0 && children.every(ch => ch.checked);
+      };
+      children.forEach(ch => ch.addEventListener('change', syncMaster));
+
+      // Initial sync in case server pre-fills values.
+      syncMaster();
+    })();
+  </script>
+
+  <!-- =========================== SLURM POLLING + BETTER ERROR HANDLING =========================== -->
+  <script>
+    const jobIdKey = 'currentJobId';
+
+    // 1) Intercept form submit and POST to /train
+    document.getElementById('trainForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const btn  = document.getElementById('submitBtn');
+
+      // UI: disable during submit
+      btn.disabled = true;
+      const prevText = btn.textContent;
+      btn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch('/train', { method:'POST', body: form });
+
+        if (!res.ok) {
+          // NEW: surface real stderr/stdout from Flask
+          let errBody = {};
+          try { errBody = await res.json(); } catch(_) {}
+          const detail = errBody.stderr || errBody.stdout || errBody.error || JSON.stringify(errBody);
+          document.getElementById('status').textContent = 'Submission error';
+          document.getElementById('logs').textContent = (detail || 'Unknown error');
+          alert(`sbatch failed:\n${detail}`);
+          return;
+        }
+
+        const data = await res.json();
+        const { job_id, script } = data;
+        sessionStorage.setItem(jobIdKey, job_id);
+
+        document.getElementById('status').textContent = 'Job submitted: ' + job_id;
+        // Show which script was submitted (handy for debugging)
+        document.getElementById('logs').textContent = 'Submitted script: ' + (script || '(unknown)');
+
+      } catch (err) {
+        alert('Network error: ' + (err && err.message ? err.message : err));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = prevText;
+      }
+    };
+
+    // 2) Poll SLURM endpoints every 2s for logs and status
+    async function poll() {
+      const jobId = sessionStorage.getItem(jobIdKey);
+      if (!jobId) return;
+
+      // Fetch logs
+      try {
+        const r1 = await fetch(`/train_logs/${jobId}`);
+        if (r1.status === 200) {
+          const lines = await r1.json();
+          document.getElementById('logs').textContent = lines.join('\n');
+        }
+      } catch (_) { /* ignore */ }
+
+      // Fetch status
+      try {
+        const r2 = await fetch(`/train_status/${jobId}`);
+        if (r2.status === 200) {
+          const { status } = await r2.json();
+          document.getElementById('status').textContent = status;
+          if (['COMPLETED','FAILED','CANCELLED'].includes((status || '').toUpperCase())) {
+            document.getElementById('trainForm').style.display    = 'none';
+            document.getElementById('postTraining').style.display = 'block';
+          }
+        }
+      } catch (_) { /* ignore */ }
+    }
+    setInterval(poll, 2000);
+  </script>
+
+  <!-- Defensive guard: don't crash if Socket.IO CDN fails in the future -->
+  <script>
+    try { if (typeof io === 'function') { window.__socketProbe = io(); } }
+    catch (e) { console.warn('Socket.IO not loaded; streaming disabled.'); }
+  </script>
+
+  <!-- =========================== FILE-BASED INFERENCE (AJAX) =========================== -->
+  <script>
+    (function () {
+      const infForm  = document.getElementById('inference-form');
+      if (!infForm) return;
+
+      const infFile  = document.getElementById('inferenceFile');
+      const infModel = document.getElementById('model_choice_inference');
+      const infOut   = document.getElementById('inferenceResult');
+      const submitBtn = infForm.querySelector('button[type="submit"]');
+
+      infForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!infFile.files || !infFile.files[0]) {
+          alert('Please choose an audio file first.');
+          return;
+        }
+
+        const fd = new FormData();
+        fd.append('file', infFile.files[0]);
+
+        // Backend accepts either field; send both for safety.
+        const model = infModel ? infModel.value : '';
+        if (model) {
+          fd.append('model_choice_inference', model);
+          fd.append('model_choice', model);
+        }
+
+        // UI feedback
+        const prevTxt = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Inferring…';
+        infOut.textContent = 'Running inference…';
+
+        try {
+          const res = await fetch('/process_audio_inference', { method: 'POST', body: fd });
+          const text = await res.text();
+
+          // Pretty-print JSON if possible; otherwise show raw text
+          try {
+            const json = JSON.parse(text);
+            infOut.textContent = JSON.stringify(json, null, 2);
+          } catch {
+            infOut.textContent = text;
+          }
+
+          if (!res.ok) {
+            throw new Error('Server returned status ' + res.status);
+          }
+
+          const statusEl = document.getElementById('modelLoadStatus');
+          if (statusEl) statusEl.textContent = 'Inference completed.';
+        } catch (err) {
+          infOut.textContent = 'Error: ' + (err && err.message ? err.message : err);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = prevTxt;
+        }
+      });
+    })();
+  </script>
+
+  <!-- =========================== NEW: /api/submit-train fetch =========================== -->
+  <script>
+    (function () {
+      const frm = document.getElementById('train-form');
+      if (!frm) return;
+
+      frm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fd = new FormData(frm);
+        const payload = Object.fromEntries(fd.entries());
+
+        // Convert numeric strings to numbers where needed
+        ["asr_batch_size","asr_epochs","asr_patience","ser_batch_size","ser_epochs","ser_patience","gpus","cpus","mem_gb"]
+          .forEach(k => payload[k] = Number(payload[k]));
+        ["asr_learning_rate","ser_learning_rate","ser_dropout"].forEach(k => payload[k] = Number(payload[k]));
+
+        try {
+          const res = await fetch('/api/submit-train', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(payload)
+          });
+          const out = await res.json();
+          document.getElementById('submit-out').textContent = JSON.stringify(out, null, 2);
+        } catch (err) {
+          document.getElementById('submit-out').textContent = 'Request failed: ' + (err && err.message ? err.message : err);
+        }
+      });
+    })();
+  </script>
+
+  <!-- =========================== REAL-TIME STREAMING VIA MICROPHONE =========================== -->
+  <script>
+    (function () {
+      const startBtn      = document.getElementById('startStreaming');
+      const stopBtn       = document.getElementById('stopStreaming');
+      const downloadBtn   = document.getElementById('downloadStreaming');
+      const modelSelect   = document.getElementById('model_choice_streaming');
+      const streamingDiv  = document.getElementById('streamingResults');
+
+      // Basic guards
+      if (!startBtn || !stopBtn || !modelSelect) {
+        console.warn('Streaming UI elements not found; skipping microphone init.');
+        return;
+      }
+      if (typeof io === 'undefined') {
+        console.warn('Socket.IO not available; disabling streaming controls.');
+        startBtn.disabled = true;
+        stopBtn.disabled = true;
+        if (downloadBtn) downloadBtn.disabled = true;
+        return;
+      }
+
+      // Reuse probe socket if created, otherwise create a new one
+      const socket = (window.__socketProbe && window.__socketProbe.connected
+                      ? window.__socketProbe
+                      : io());
+
+      let audioContext = null;
+      let micStream    = null;
+      let scriptNode   = null;
+      let streamingHistory = [];
+      let chunkDebugLogged = false;  // NEW: log first chunk for debug
+
+      // NEW: single <pre> for efficient rendering + limit visible entries
+      const MAX_VISIBLE_RESULTS = 50;
+      let latestPre = null;
+
+      socket.on('connect', () => {
+        console.log('[SocketIO] connected for realtime streaming:', socket.id);
+      });
+      socket.on('disconnect', () => {
+        console.log('[SocketIO] disconnected from realtime streaming.');
+      });
+
+      // Receive inference results from backend (optimized rendering)
+      socket.on('asr_emotion_result', (payload) => {
+        if (!payload) return;
+        const entry = Object.assign({ timestamp: new Date().toISOString() }, payload);
+        streamingHistory.push(entry);
+
+        // Keep history for download, but cap in-memory size to avoid growth
+        if (streamingHistory.length > 1000) {
+          streamingHistory.splice(0, streamingHistory.length - 1000);
+        }
+
+        if (!latestPre) {
+          latestPre = document.createElement('pre');
+          streamingDiv.appendChild(latestPre);
+        }
+
+        // Only render the last MAX_VISIBLE_RESULTS entries into a single <pre>
+        const visible = streamingHistory.slice(-MAX_VISIBLE_RESULTS);
+        latestPre.textContent = visible
+          .map(e => JSON.stringify(e, null, 2))
+          .join('\n\n');
+
+        streamingDiv.scrollTop = streamingDiv.scrollHeight;
+
+        if (downloadBtn) downloadBtn.disabled = streamingHistory.length === 0;
+      });
+
+      async function startStreaming() {
+        if (audioContext) {
+          console.warn('AudioContext already running.');
+          return;
+        }
+
+        const model = modelSelect.value;
+        if (!model) {
+          alert('Please select a trained model for streaming.');
+          return;
+        }
+
+        // Reset history + UI for a fresh session (NEW)
+        streamingHistory = [];
+        streamingDiv.innerHTML = '';
+        latestPre = null;
+        if (downloadBtn) downloadBtn.disabled = true;
+        chunkDebugLogged = false;
+
+        // Ask for microphone access
+        try {
+          micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (err) {
+          console.error('getUserMedia failed:', err);
+          alert('Could not access microphone: ' + (err && err.message ? err.message : err));
+          return;
+        }
+
+        try {
+          // Try to request 16kHz; browser may override, but it's fine
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          audioContext = new AudioCtx({ sampleRate: 16000 });
+        } catch (e) {
+          console.warn('AudioContext with custom sampleRate failed, using default.', e);
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          audioContext = new AudioCtx();
+        }
+
+        const source = audioContext.createMediaStreamSource(micStream);
+
+        // ScriptProcessorNode to get raw float32 PCM frames
+        const bufferSize = 2048;
+        scriptNode = audioContext.createScriptProcessor(bufferSize, 1, 1);
+
+        scriptNode.onaudioprocess = (ev) => {
+          const input = ev.inputBuffer.getChannelData(0); // Float32Array
+          if (!input || input.length === 0) {
+            return;
+          }
+
+          // Copy into our own Float32Array
+          const samples = new Float32Array(input.length);
+          samples.set(input);
+
+          // Debug-log the first chunk so we can see length & sample rate (NEW)
+          if (!chunkDebugLogged) {
+            console.log('[Streaming] First chunk', samples.length, 'samples at', audioContext.sampleRate, 'Hz');
+            chunkDebugLogged = true;
+          }
+
+          // Send as plain JS array of float samples; backend handles float32 (NEW)
+          socket.emit('unity_audio_chunk', {
+            audio: Array.from(samples),
+            sample_rate: audioContext.sampleRate,
+            model_choice: modelSelect.value
+          });
+        };
+
+        source.connect(scriptNode);
+        scriptNode.connect(audioContext.destination);
+
+        startBtn.disabled = true;
+        stopBtn.disabled  = false;
+        console.log('🎙️ Started microphone streaming with AudioContext, sampleRate =', audioContext.sampleRate);
+      }
+
+      function stopStreaming() {
+        if (scriptNode) {
+          try {
+            scriptNode.disconnect();
+          } catch (_) {}
+          scriptNode.onaudioprocess = null;
+          scriptNode = null;
+        }
+
+        if (audioContext) {
+          try {
+            audioContext.close();
+          } catch (_) {}
+          audioContext = null;
+        }
+
+        if (micStream) {
+          micStream.getTracks().forEach(t => t.stop());
+          micStream = null;
+        }
+
+        startBtn.disabled = false;
+        stopBtn.disabled  = true;
+        console.log('⏹️ Stopped microphone streaming.');
+      }
+
+      function downloadHistory() {
+        if (!streamingHistory.length) return;
+        const blob = new Blob(
+          [JSON.stringify(streamingHistory, null, 2)],
+          { type: 'application/json' }
+        );
+        const url = URL.createObjectURL(blob);
+        const a   = document.createElement('a');
+        a.href = url;
+        a.download = 'streaming_results.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      startBtn.addEventListener('click', startStreaming);
+      stopBtn.addEventListener('click', stopStreaming);
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadHistory);
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# --- Web app / sockets ---
+Flask
+Flask-SocketIO
+eventlet            # optional but recommended for WebSocket transport with Flask-SocketIO
+
+# --- PyTorch stack ---
+# Install these with the CUDA 11.8 wheels, e.g.:
+#   pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu118
+torch
+torchvision
+torchaudio          # used for SpecAugment-style masking (FrequencyMasking/TimeMasking)
+
+# --- Audio / DSP ---
+librosa
+numpy
+soundfile
+pydub               # requires system ffmpeg installed
+scipy               # pulled in by librosa anyway, but kept explicit
+
+# --- HF ecosystem / adapters ---
+transformers
+peft                # LoRA adapters + merge_and_unload
+
+# --- ML utilities ---
+scikit-learn
+jiwer               # WER in train/eval
+
+# --- VAD / streaming ---
+webrtcvad           # WebRTC voice activity detection
+
+# --- CTC decoding with LM ---
+pyctcdecode
+kenlm               # optional but recommended for LM scoring in pyctcdecode
+
+# --- Visualization ---
+matplotlib          # used by processing_graph.py for 3D diagram
+
+# --- System / misc ---
+psutil

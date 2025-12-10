@@ -1,0 +1,6 @@
+{
+  "transcription": "ING G",
+  "emotion": "fear",
+  "output_file": "inference_results\\b8be953b-7af0-4fee-a7ea-83d8f1e181cb.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_ASR_SER"
+}

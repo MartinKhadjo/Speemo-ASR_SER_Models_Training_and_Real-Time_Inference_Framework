@@ -1,0 +1,86 @@
+C:\Users\mkhadjavian\Desktop\speemo_tests\speemo_sd\src\model_loader.py:461: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+state = torch.load(ckpt_path, map_location=device)
+C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py:863: UserWarning: 1Torch was not compiled with flash attention. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\aten\src\ATen\native\transformers\cuda\sdp_utils.cpp:555.)
+attn_output = torch.nn.functional.scaled_dot_product_attention(
+C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\training_args.py:1568: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of \U0001f917 Transformers. Use `eval_strategy` instead
+warnings.warn(
+C:\Users\mkhadjavian\Desktop\speemo_tests\speemo_sd\src\train.py:935: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+asr_trainer = Trainer(
+[Logging] Training logs will also be written to: models/checkpoints\speemo_sd_bs32_epoch20_ASR_SER_EN_asr\train.log
+[Setup] Using device: cuda
+[ASR] Loading model + processor…
+[ASR/LoRA] Applying LoRA with r=8, alpha=32, dropout=0.1
+[ASR/LoRA] LoRA adapters attached to ASR backbone (task_type=FEATURE_EXTRACTION).
+[ASR/LoRA] trainable params: 1,327,104 / 95,723,424
+[ASR] Model type: <class 'model.Wav2Vec2AsrModel'>
+[ASR] Inner model type: <class 'peft.peft_model.PeftModelForFeatureExtraction'>
+[ASR] Using PEFT/LoRA model - base_model accessible
+[ASR] Starting training with HuggingFace Trainer…
+0%|          | 0/200 [00:00<?, ?it/s]
+0%|          | 1/200 [00:31<1:44:41, 31.57s/it]
+1%|1         | 2/200 [01:05<1:48:25, 32.86s/it]
+2%|1         | 3/200 [01:22<1:24:27, 25.72s/it]Traceback (most recent call last):
+File "C:\Users\mkhadjavian\Desktop\speemo_tests\speemo_sd\src\train.py", line 1411, in <module>
+train_model(
+File "C:\Users\mkhadjavian\Desktop\speemo_tests\speemo_sd\src\train.py", line 946, in train_model
+asr_trainer.train()
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\trainer.py", line 2123, in train
+return inner_training_loop(
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\trainer.py", line 2481, in _inner_training_loop
+tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\trainer.py", line 3579, in training_step
+loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\trainer.py", line 3633, in compute_loss
+outputs = model(**inputs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\Desktop\speemo_tests\speemo_sd\src\model.py", line 233, in forward
+return backbone(**call_kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\peft\tuners\tuners_utils.py", line 197, in forward
+return self.model.forward(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py", line 2229, in forward
+outputs = self.wav2vec2(
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py", line 1824, in forward
+encoder_outputs = self.encoder(
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py", line 1062, in forward
+layer_outputs = layer(
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py", line 944, in forward
+hidden_states = hidden_states + self.feed_forward(hidden_states)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\transformers\models\wav2vec2\modeling_wav2vec2.py", line 911, in forward
+hidden_states = self.intermediate_dense(hidden_states)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\peft\tuners\lora\layer.py", line 584, in forward
+result = result + lora_B(lora_A(dropout(x))) * scaling
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+return forward_call(*args, **kwargs)
+File "C:\Users\mkhadjavian\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\linear.py", line 117, in forward
+return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 222.00 MiB. GPU 0 has a total capacity of 12.00 GiB of which 0 bytes is free. Of the allocated memory 25.85 GiB is allocated by PyTorch, and 351.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+2%|1         | 3/200 [01:46<1:57:03, 35.65s/it]

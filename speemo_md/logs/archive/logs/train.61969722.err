@@ -1,0 +1,12 @@
+/usr/local/lib/python3.10/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspace/run.py", line 16, in <module>
+    from main_app import app, socketio
+  File "/workspace/main_app.py", line 56, in <module>
+    os.makedirs(SCRIPTS_DIR, exist_ok=True)
+  File "/usr/lib/python3.10/os.py", line 215, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/usr/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 30] Read-only file system: '/hpcwork/user'

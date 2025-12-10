@@ -1,0 +1,96 @@
+/usr/local/lib/python3.10/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Some weights of Wav2Vec2ForCTC were not initialized from the model checkpoint at models/pretrained/en and are newly initialized: ['wav2vec2.masked_spec_embed']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/usr/local/lib/python3.10/dist-packages/transformers/models/wav2vec2/modeling_wav2vec2.py:1823: FutureWarning: The method `freeze_feature_extractor` is deprecated and will be removed in Transformers v5. Please use the equivalent `freeze_feature_encoder` method instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspace/src/train.py", line 47, in load_audio_16k_mono
+    y = librosa.resample(y, orig_sr=sr, target_sr=16000)
+  File "/usr/local/lib/python3.10/dist-packages/lazy_loader/__init__.py", line 83, in __getattr__
+    attr = getattr(submod, name)
+  File "/usr/local/lib/python3.10/dist-packages/lazy_loader/__init__.py", line 82, in __getattr__
+    submod = importlib.import_module(submod_path)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/usr/local/lib/python3.10/dist-packages/librosa/core/audio.py", line 20, in <module>
+    from .convert import frames_to_samples, time_to_samples
+  File "/usr/local/lib/python3.10/dist-packages/librosa/core/convert.py", line 6, in <module>
+    from . import notation
+  File "/usr/local/lib/python3.10/dist-packages/librosa/core/notation.py", line 1015, in <module>
+    def __o_fold(d):
+  File "/usr/local/lib/python3.10/dist-packages/numba/core/decorators.py", line 225, in wrapper
+    disp.enable_caching()
+  File "/usr/local/lib/python3.10/dist-packages/numba/core/dispatcher.py", line 807, in enable_caching
+    self._cache = FunctionCache(self.py_func)
+  File "/usr/local/lib/python3.10/dist-packages/numba/core/caching.py", line 647, in __init__
+    self._impl = self._impl_class(py_func)
+  File "/usr/local/lib/python3.10/dist-packages/numba/core/caching.py", line 383, in __init__
+    raise RuntimeError("cannot cache function %r: no locator available "
+RuntimeError: cannot cache function '__o_fold': no locator available for file '/usr/local/lib/python3.10/dist-packages/librosa/core/notation.py'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/src/train.py", line 817, in <module>
+    train_model(
+  File "/workspace/src/train.py", line 537, in train_model
+    sample_batch = asr_collator([ asr_train_ds[i] for i in range(4) ])
+  File "/workspace/src/train.py", line 537, in <listcomp>
+    sample_batch = asr_collator([ asr_train_ds[i] for i in range(4) ])
+  File "/workspace/src/train.py", line 194, in __getitem__
+    audio, _ = load_audio_16k_mono(path)
+  File "/workspace/src/train.py", line 52, in load_audio_16k_mono
+    raise RuntimeError(f"Could not load audio: {path}") from e
+RuntimeError: Could not load audio: data/processed/train/asr/en/common_voice_en_10.mp3
+E0909 13:44:53.643000 22849166652032 torch/distributed/elastic/multiprocessing/api.py:826] failed (exitcode: 1) local_rank: 0 (pid: 3717792) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 7, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 879, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 870, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 132, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 263, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/workspace/src/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-09-09_13:44:53
+  host      : n23g0003.hpc.itc.rwth-aachen.de
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3717792)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/workspace/run.py", line 164, in <module>
+    main()
+  File "/workspace/run.py", line 161, in main
+    args.func(args)
+  File "/workspace/run.py", line 79, in run_train
+    subprocess.run(cmd, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['torchrun', '--nproc_per_node=1', '--rdzv_id=training', '--rdzv_backend=c10d', '--rdzv_endpoint=127.0.0.1:29500', '/workspace/src/train.py', '--device=cuda', '--asr_learning_rate=1e-05', '--asr_batch_size=4', '--asr_epochs=10', '--asr_patience=2', '--asr_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_92_asr', '--asr_lang=en', '--ser_learning_rate=1e-05', '--ser_batch_size=4', '--ser_epochs=10', '--ser_dropout=0.3', '--ser_patience=2', '--ser_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_92_ser', '--ser_lang=en']' returned non-zero exit status 1.
+srun: error: n23g0003: task 0: Exited with exit code 1

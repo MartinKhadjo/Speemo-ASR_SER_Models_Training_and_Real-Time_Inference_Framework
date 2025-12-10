@@ -1,0 +1,166 @@
+﻿/* General body styles */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background-color: #00549f; /* RWTH Aachen blue */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+    header h1 {
+        font-size: 2rem;
+        margin: 0;
+        font-weight: bold;
+    }
+
+/* Main section styles */
+main {
+    padding: 20px;
+}
+
+/* Form container styles */
+section.form-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    max-width: 500px;
+    padding: 30px;
+}
+
+    section.form-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #00549f;
+    }
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 12px;
+    background-color: #00549f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+    button:hover {
+        background-color: #003a6d;
+    }
+
+/* Info container styles */
+section.info-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+}
+
+    section.info-container h2 {
+        font-size: 1.5rem;
+        color: #00549f;
+        margin-bottom: 15px;
+    }
+
+/* Logs container styles */
+section.logs-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 700px;
+    padding: 20px;
+}
+
+    section.logs-container h2 {
+        font-size: 1.5rem;
+        color: #00549f;
+        margin-bottom: 15px;
+    }
+
+    section.logs-container #logs {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+        font-size: 0.9rem;
+        color: #444;
+    }
+
+/* Status container styles */
+section.status-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+}
+
+    section.status-container h2 {
+        font-size: 1.5rem;
+        color: #00549f;
+        margin-bottom: 15px;
+    }
+
+    section.status-container #status {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #00549f;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+    footer p {
+        margin: 0;
+    }

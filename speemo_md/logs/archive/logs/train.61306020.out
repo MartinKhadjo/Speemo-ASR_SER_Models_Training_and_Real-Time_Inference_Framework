@@ -1,0 +1,145 @@
+[DIST] MASTER_ADDR=r23g0004 MASTER_PORT=29500 NNODES=1 GPUS_PER_NODE=1
+[PRE] Skipping all preprocessing (skip_preprocessing=on or all per-step toggles are 'on')
+[TRAIN][ASR] Starting ASR phase ...
+[Setup] Using device: cuda
+[Setup] no_cuda flag set to: False
+[ASR] Loading model + processor…
+[ASR] Starting from pretrained: models/pretrained/en
+trainable params: 589,824 || all params: 94,986,144 || trainable%: 0.6210
+[ASR] Trainable parameters: 589824 / 94986144
+🛠️  Debug collator output shapes: {'input_values': torch.Size([4, 75264]), 'attention_mask': torch.Size([4, 75264]), 'labels': torch.Size([4, 93])}
+[ASR] Starting training with HuggingFace Trainer…
+r23g0004:4128542:4128542 [0] NCCL INFO Bootstrap : Using ib0:134.61.46.208<0>
+r23g0004:4128542:4128542 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+r23g0004:4128542:4128542 [0] NCCL INFO cudaDriverVersion 12080
+NCCL version 2.20.5+cuda12.4
+r23g0004:4128542:4128644 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib0:134.61.46.208<0>
+r23g0004:4128542:4128644 [0] NCCL INFO Using non-device net plugin version 0
+r23g0004:4128542:4128644 [0] NCCL INFO Using network IB
+r23g0004:4128542:4128644 [0] NCCL INFO DMA-BUF is available on GPU device 0
+r23g0004:4128542:4128644 [0] NCCL INFO comm 0x55e02dc37940 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 9d000 commId 0x75f3555601fbf23a - Init START
+r23g0004:4128542:4128644 [0] NCCL INFO comm 0x55e02dc37940 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 00/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 01/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 02/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 03/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 04/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 05/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 06/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 07/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 08/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 09/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 10/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 11/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 12/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 13/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 14/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 15/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 16/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 17/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 18/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 19/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 20/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 21/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 22/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 23/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 24/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 25/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 26/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 27/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 28/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 29/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 30/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Channel 31/32 :    0
+r23g0004:4128542:4128644 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+r23g0004:4128542:4128644 [0] NCCL INFO P2P Chunksize set to 131072
+r23g0004:4128542:4128644 [0] NCCL INFO Connected all rings
+r23g0004:4128542:4128644 [0] NCCL INFO Connected all trees
+r23g0004:4128542:4128644 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+r23g0004:4128542:4128644 [0] NCCL INFO comm 0x55e02dc37940 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 9d000 commId 0x75f3555601fbf23a - Init COMPLETE
+{'loss': 2.1461, 'grad_norm': 3.1272528171539307, 'learning_rate': 0.0, 'epoch': 0.0}
+{'loss': 1.6783, 'grad_norm': 4.417701244354248, 'learning_rate': 1.2128032008002e-07, 'epoch': 0.03}
+{'loss': 1.6989, 'grad_norm': 3.499537229537964, 'learning_rate': 2.450612653163291e-07, 'epoch': 0.05}
+{'loss': 1.656, 'grad_norm': 2.603006601333618, 'learning_rate': 3.7009252313078273e-07, 'epoch': 0.08}
+{'loss': 1.5873, 'grad_norm': 2.0066070556640625, 'learning_rate': 4.951237809452364e-07, 'epoch': 0.1}
+{'loss': 1.5635, 'grad_norm': 2.907315731048584, 'learning_rate': 6.201550387596899e-07, 'epoch': 0.13}
+{'loss': 1.5547, 'grad_norm': 5.463220119476318, 'learning_rate': 7.451862965741435e-07, 'epoch': 0.15}
+{'loss': 1.5914, 'grad_norm': 4.595897197723389, 'learning_rate': 8.702175543885972e-07, 'epoch': 0.18}
+{'loss': 1.6959, 'grad_norm': 2.657445192337036, 'learning_rate': 9.952488122030508e-07, 'epoch': 0.2}
+{'loss': 1.6412, 'grad_norm': 2.2367427349090576, 'learning_rate': 1.1202800700175044e-06, 'epoch': 0.23}
+{'loss': 1.6414, 'grad_norm': 3.5572025775909424, 'learning_rate': 1.2453113278319582e-06, 'epoch': 0.25}
+{'loss': 1.6983, 'grad_norm': 3.337433338165283, 'learning_rate': 1.3703425856464117e-06, 'epoch': 0.28}
+{'loss': 1.5751, 'grad_norm': 2.3771305084228516, 'learning_rate': 1.4953738434608653e-06, 'epoch': 0.3}
+{'loss': 1.5555, 'grad_norm': 14.902440071105957, 'learning_rate': 1.620405101275319e-06, 'epoch': 0.33}
+{'loss': 1.5132, 'grad_norm': 3.1401705741882324, 'learning_rate': 1.7454363590897727e-06, 'epoch': 0.35}
+{'loss': 1.4706, 'grad_norm': 2.916581869125366, 'learning_rate': 1.8704676169042263e-06, 'epoch': 0.38}
+{'loss': 1.4708, 'grad_norm': 2.296867609024048, 'learning_rate': 1.99549887471868e-06, 'epoch': 0.4}
+{'loss': 1.3246, 'grad_norm': 3.4133353233337402, 'learning_rate': 2.1205301325331334e-06, 'epoch': 0.43}
+{'loss': 1.3261, 'grad_norm': 13.20273494720459, 'learning_rate': 2.245561390347587e-06, 'epoch': 0.45}
+{'loss': 1.3813, 'grad_norm': 3.99368953704834, 'learning_rate': 2.3705926481620406e-06, 'epoch': 0.48}
+{'loss': 1.3731, 'grad_norm': 2.664330244064331, 'learning_rate': 2.4956239059764944e-06, 'epoch': 0.5}
+{'loss': 1.2738, 'grad_norm': 2.8732385635375977, 'learning_rate': 2.6206551637909478e-06, 'epoch': 0.53}
+{'loss': 1.3037, 'grad_norm': 4.730851173400879, 'learning_rate': 2.745686421605401e-06, 'epoch': 0.55}
+{'loss': 1.2187, 'grad_norm': 3.719007968902588, 'learning_rate': 2.8707176794198554e-06, 'epoch': 0.58}
+{'loss': 1.2975, 'grad_norm': 2.920461416244507, 'learning_rate': 2.995748937234309e-06, 'epoch': 0.6}
+{'loss': 1.2555, 'grad_norm': 3.899165153503418, 'learning_rate': 3.1207801950487625e-06, 'epoch': 0.63}
+{'loss': 1.2872, 'grad_norm': 3.3913657665252686, 'learning_rate': 3.2458114528632163e-06, 'epoch': 0.65}
+{'loss': 1.2461, 'grad_norm': 4.658043384552002, 'learning_rate': 3.3695923980995256e-06, 'epoch': 0.68}
+{'loss': 1.2894, 'grad_norm': 5.0227460861206055, 'learning_rate': 3.494623655913979e-06, 'epoch': 0.7}
+{'loss': 1.2416, 'grad_norm': 4.2594475746154785, 'learning_rate': 3.6196549137284327e-06, 'epoch': 0.73}
+{'loss': 1.1756, 'grad_norm': 5.533599376678467, 'learning_rate': 3.744686171542886e-06, 'epoch': 0.75}
+{'loss': 1.2107, 'grad_norm': 5.77677583694458, 'learning_rate': 3.8697174293573395e-06, 'epoch': 0.78}
+{'loss': 1.1746, 'grad_norm': 2.755876064300537, 'learning_rate': 3.994748687171794e-06, 'epoch': 0.8}
+{'loss': 1.2352, 'grad_norm': 4.014490604400635, 'learning_rate': 4.119779944986247e-06, 'epoch': 0.83}
+{'loss': 1.206, 'grad_norm': 3.6569507122039795, 'learning_rate': 4.243560890222556e-06, 'epoch': 0.85}
+{'loss': 1.1279, 'grad_norm': 2.5535056591033936, 'learning_rate': 4.368592148037009e-06, 'epoch': 0.88}
+{'loss': 1.1466, 'grad_norm': 2.8044395446777344, 'learning_rate': 4.4936234058514635e-06, 'epoch': 0.9}
+{'loss': 1.1193, 'grad_norm': 3.2561991214752197, 'learning_rate': 4.618654663665917e-06, 'epoch': 0.93}
+{'loss': 1.2079, 'grad_norm': 3.081799268722534, 'learning_rate': 4.74368592148037e-06, 'epoch': 0.95}
+{'loss': 1.0355, 'grad_norm': 9.681857109069824, 'learning_rate': 4.868717179294824e-06, 'epoch': 0.98}
+{'eval_loss': 0.906660795211792, 'eval_wer': 0.382044316608075, 'eval_runtime': 1528.2525, 'eval_samples_per_second': 5.235, 'eval_steps_per_second': 5.235, 'epoch': 1.0}
+{'loss': 1.0575, 'grad_norm': 4.346655368804932, 'learning_rate': 4.993748437109278e-06, 'epoch': 1.0}
+{'loss': 1.1279, 'grad_norm': 3.076093912124634, 'learning_rate': 5.118779694923731e-06, 'epoch': 1.03}
+{'loss': 0.9537, 'grad_norm': 5.3447346687316895, 'learning_rate': 5.243810952738185e-06, 'epoch': 1.05}
+{'loss': 1.0984, 'grad_norm': 3.6382782459259033, 'learning_rate': 5.368842210552638e-06, 'epoch': 1.08}
+{'loss': 1.0829, 'grad_norm': 2.026967763900757, 'learning_rate': 5.493873468367092e-06, 'epoch': 1.1}
+{'loss': 1.028, 'grad_norm': 5.260411739349365, 'learning_rate': 5.6189047261815455e-06, 'epoch': 1.13}
+{'loss': 1.0974, 'grad_norm': 3.39553165435791, 'learning_rate': 5.743935983996e-06, 'epoch': 1.15}
+{'loss': 0.9789, 'grad_norm': 2.7137813568115234, 'learning_rate': 5.868967241810452e-06, 'epoch': 1.18}
+{'loss': 1.032, 'grad_norm': 13.211933135986328, 'learning_rate': 5.9939984996249065e-06, 'epoch': 1.2}
+{'loss': 1.0245, 'grad_norm': 2.9652960300445557, 'learning_rate': 6.11902975743936e-06, 'epoch': 1.23}
+{'loss': 0.981, 'grad_norm': 5.160900115966797, 'learning_rate': 6.244061015253814e-06, 'epoch': 1.25}
+{'loss': 1.0372, 'grad_norm': 3.438755750656128, 'learning_rate': 6.369092273068268e-06, 'epoch': 1.28}
+{'loss': 0.9482, 'grad_norm': 4.135251998901367, 'learning_rate': 6.494123530882721e-06, 'epoch': 1.3}
+{'loss': 1.0578, 'grad_norm': 4.90848445892334, 'learning_rate': 6.619154788697175e-06, 'epoch': 1.33}
+{'loss': 0.9436, 'grad_norm': 3.8871898651123047, 'learning_rate': 6.744186046511628e-06, 'epoch': 1.35}
+{'loss': 1.003, 'grad_norm': 47.862796783447266, 'learning_rate': 6.869217304326083e-06, 'epoch': 1.38}
+{'loss': 1.0178, 'grad_norm': 27.598291397094727, 'learning_rate': 6.994248562140535e-06, 'epoch': 1.4}
+{'loss': 0.9676, 'grad_norm': 2.5405666828155518, 'learning_rate': 7.119279819954989e-06, 'epoch': 1.43}
+{'loss': 1.0079, 'grad_norm': 3.625143527984619, 'learning_rate': 7.244311077769443e-06, 'epoch': 1.45}
+{'loss': 1.0331, 'grad_norm': 1.267894983291626, 'learning_rate': 7.369342335583897e-06, 'epoch': 1.48}
+{'loss': 0.9689, 'grad_norm': 9.337550163269043, 'learning_rate': 7.4943735933983494e-06, 'epoch': 1.5}
+{'loss': 0.9994, 'grad_norm': 2.4324755668640137, 'learning_rate': 7.619404851212804e-06, 'epoch': 1.53}
+{'loss': 0.9031, 'grad_norm': 4.458102226257324, 'learning_rate': 7.744436109027259e-06, 'epoch': 1.55}
+{'loss': 1.3084, 'grad_norm': 5.415921211242676, 'learning_rate': 7.86946736684171e-06, 'epoch': 1.58}
+{'loss': 0.974, 'grad_norm': 3.1816630363464355, 'learning_rate': 7.994498624656165e-06, 'epoch': 1.6}
+{'loss': 0.9013, 'grad_norm': 8.814746856689453, 'learning_rate': 8.119529882470619e-06, 'epoch': 1.63}
+{'loss': 1.0052, 'grad_norm': 6.163136005401611, 'learning_rate': 8.244561140285072e-06, 'epoch': 1.65}
+{'loss': 0.9947, 'grad_norm': 6.152965545654297, 'learning_rate': 8.369592398099526e-06, 'epoch': 1.68}
+{'loss': 0.9432, 'grad_norm': 4.509838581085205, 'learning_rate': 8.494623655913979e-06, 'epoch': 1.7}
+{'loss': 1.0464, 'grad_norm': 4.08203649520874, 'learning_rate': 8.619654913728432e-06, 'epoch': 1.73}
+{'loss': 0.9788, 'grad_norm': 2.2793054580688477, 'learning_rate': 8.744686171542887e-06, 'epoch': 1.75}
+{'loss': 1.015, 'grad_norm': 10.127325057983398, 'learning_rate': 8.869717429357339e-06, 'epoch': 1.78}
+{'loss': 0.916, 'grad_norm': 8.745574951171875, 'learning_rate': 8.994748687171794e-06, 'epoch': 1.8}
+{'loss': 0.9365, 'grad_norm': 9.585579872131348, 'learning_rate': 9.119779944986247e-06, 'epoch': 1.83}
+{'loss': 1.0365, 'grad_norm': 12.406046867370605, 'learning_rate': 9.2448112028007e-06, 'epoch': 1.85}
+{'loss': 0.8914, 'grad_norm': 10.645031929016113, 'learning_rate': 9.36859214803701e-06, 'epoch': 1.88}
+{'loss': 1.056, 'grad_norm': 3.48142671585083, 'learning_rate': 9.493623405851464e-06, 'epoch': 1.9}
+{'loss': 0.9711, 'grad_norm': 4.157154083251953, 'learning_rate': 9.618654663665917e-06, 'epoch': 1.93}
+{'loss': 0.9733, 'grad_norm': 7.2394585609436035, 'learning_rate': 9.74368592148037e-06, 'epoch': 1.95}
+{'loss': 0.9189, 'grad_norm': 10.655447006225586, 'learning_rate': 9.868717179294824e-06, 'epoch': 1.98}
+{'eval_loss': 0.7537569403648376, 'eval_wer': 0.37851550015979546, 'eval_runtime': 1526.9324, 'eval_samples_per_second': 5.239, 'eval_steps_per_second': 5.239, 'epoch': 2.0}
+{'loss': 0.9387, 'grad_norm': 46.71927261352539, 'learning_rate': 9.992498124531134e-06, 'epoch': 2.0}
+{'loss': 0.9373, 'grad_norm': 3.0279722213745117, 'learning_rate': 1e-05, 'epoch': 2.03}
+{'loss': 0.914, 'grad_norm': 9.819465637207031, 'learning_rate': 1e-05, 'epoch': 2.05}
+{'loss': 0.8601, 'grad_norm': 6.574739933013916, 'learning_rate': 1e-05, 'epoch': 2.08}

@@ -1,0 +1,6 @@
+{
+  "transcription": "ich bin ins patientenzimer reingekomen es hat eckelhaft gerochen",
+  "emotion": "sad",
+  "output_file": "inference_results\\14ef22e5-2963-4d6f-afaf-823cf851ac21.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_de_10"
+}

@@ -1,0 +1,70 @@
+[2025-08-30 12:33:32,536] torch.distributed.run: [WARNING] master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+Traceback (most recent call last):
+  File "/workspace/src/train.py", line 789, in <module>
+    train_model(
+  File "/workspace/src/train.py", line 464, in train_model
+    asr_model_wrapper, processor = load_asr_model(asr_start_dir, device=dev)
+  File "/workspace/src/model_loader.py", line 134, in load_asr_model
+    model, processor = Wav2Vec2AsrModel.from_pretrained(
+  File "/workspace/src/model.py", line 58, in from_pretrained
+    model = cls(
+  File "/workspace/src/model.py", line 22, in __init__
+    self.model = Wav2Vec2ForCTC.from_pretrained(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 317, in _wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 4999, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/wav2vec2/modeling_wav2vec2.py", line 1775, in __init__
+    super().__init__(config)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 2228, in __init__
+    self.config._attn_implementation_internal = self._check_and_adjust_attn_implementation(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 2765, in _check_and_adjust_attn_implementation
+    attn_implementation = self.get_correct_attn_implementation(applicable_attn_implementation, is_init_check)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 2808, in get_correct_attn_implementation
+    raise e
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 2805, in get_correct_attn_implementation
+    self._sdpa_can_dispatch(is_init_check)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 2652, in _sdpa_can_dispatch
+    raise ImportError("PyTorch SDPA requirements in Transformers are not met. Please install torch>=2.1.1.")
+ImportError: PyTorch SDPA requirements in Transformers are not met. Please install torch>=2.1.1.
+[2025-08-30 12:33:37,714] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1911133) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 7, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/workspace/src/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-30_12:33:37
+  host      : n23g0015.hpc.itc.rwth-aachen.de
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1911133)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/workspace/run.py", line 164, in <module>
+    main()
+  File "/workspace/run.py", line 161, in main
+    args.func(args)
+  File "/workspace/run.py", line 79, in run_train
+    subprocess.run(cmd, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['torchrun', '--nproc_per_node=1', '--rdzv_id=training', '--rdzv_backend=c10d', '--rdzv_endpoint=127.0.0.1:29500', '/workspace/src/train.py', '--device=cuda', '--asr_learning_rate=1e-05', '--asr_batch_size=4', '--asr_epochs=10', '--asr_patience=2', '--asr_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_90_asr', '--asr_lang=en', '--ser_learning_rate=1e-05', '--ser_batch_size=4', '--ser_epochs=10', '--ser_dropout=0.3', '--ser_patience=2', '--ser_checkpoint=models/checkpoints/Speemo_Medium_Dataset_HPC_GPU_based_Train_90_ser', '--ser_lang=en']' returned non-zero exit status 1.
+srun: error: n23g0015: task 0: Exited with exit code 1

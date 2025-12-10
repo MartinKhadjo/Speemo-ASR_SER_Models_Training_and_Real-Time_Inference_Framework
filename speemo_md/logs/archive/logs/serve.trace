@@ -1,0 +1,302 @@
++ [[ -n '' ]]
++ global_bashenv=1
++ [[ -e /opt/lmod/lmod/init/profile ]]
++ [[ -r /opt/lmod/lmod/init/profile ]]
++ . /opt/lmod/lmod/init/profile
+++ '[' -z '' ']'
+++ LMOD_ALLOW_ROOT_USE=no
+++ '[' -n '' ']'
+++ '[' no '!=' yes ']'
++++ id -u
+++ '[' 51425 = 0 ']'
+++ '[' -z /cvmfs/software.hpc.rwth.de/Linux/RH9/x86_64/intel/sapphirerapids/modules/all ']'
+++ findExec READLINK_CMD /usr/bin/readlink readlink
+++ Nm=READLINK_CMD
+++ confPath=/usr/bin/readlink
+++ execNm=readlink
+++ eval READLINK_CMD=/usr/bin/readlink
++++ READLINK_CMD=/usr/bin/readlink
+++ '[' '!' -x /usr/bin/readlink ']'
+++ unset Nm confPath execNm
+++ findExec PS_CMD /usr/bin/ps ps
+++ Nm=PS_CMD
+++ confPath=/usr/bin/ps
+++ execNm=ps
+++ eval PS_CMD=/usr/bin/ps
++++ PS_CMD=/usr/bin/ps
+++ '[' '!' -x /usr/bin/ps ']'
+++ unset Nm confPath execNm
+++ findExec EXPR_CMD /usr/bin/expr expr
+++ Nm=EXPR_CMD
+++ confPath=/usr/bin/expr
+++ execNm=expr
+++ eval EXPR_CMD=/usr/bin/expr
++++ EXPR_CMD=/usr/bin/expr
+++ '[' '!' -x /usr/bin/expr ']'
+++ unset Nm confPath execNm
+++ findExec BASENAME_CMD /usr/bin/basename basename
+++ Nm=BASENAME_CMD
+++ confPath=/usr/bin/basename
+++ execNm=basename
+++ eval BASENAME_CMD=/usr/bin/basename
++++ BASENAME_CMD=/usr/bin/basename
+++ '[' '!' -x /usr/bin/basename ']'
+++ unset Nm confPath execNm
+++ unset -f findExec
+++ '[' -f /proc/724688/exe ']'
++++ /usr/bin/readlink /proc/724688/exe
+++ my_shell=/usr/bin/bash
++++ /usr/bin/expr /usr/bin/bash : '-*\(.*\)'
+++ my_shell=/usr/bin/bash
++++ /usr/bin/basename /usr/bin/bash
+++ my_shell=bash
+++ case ${my_shell} in
+++ '[' -f /opt/lmod/8.7.47/init/bash ']'
+++ . /opt/lmod/8.7.47/init/bash
++++ '[' -z '' ']'
++++ case "$-" in
++++ __lmod_vx=x
++++ '[' -n x ']'
++++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for this output (/opt/lmod/8.7.47/init/bash)
+Shell debugging restarted
++++ unset __lmod_vx
+++ unset my_shell PS_CMD EXPR_CMD BASENAME_CMD MODULEPATH_INIT LMOD_ALLOW_ROOT_USE READLINK_CMD
++ set -euo pipefail
++ USER=mk696056
++ HPCWORK=/hpcwork/mk696056
++ mkdir -p /hpcwork/mk696056/speemo_md_0.005 /hpcwork/mk696056/scripts /hpcwork/mk696056/logs /hpcwork/mk696056/containers /hpcwork/mk696056/hf_cache /hpcwork/mk696056/speemo_md_0.005/data /hpcwork/mk696056/speemo_md_0.005/models
++ module load apptainer
++ true
+++ command -v ldconfig
++ LDCONFIG_BIN=/usr/sbin/ldconfig
+++ command -v sbatch
++ HOST_SBATCH=/usr/local_host/bin/sbatch
+++ command -v squeue
++ HOST_SQUEUE=/opt/slurm/current/bin/squeue
+++ command -v sacct
++ HOST_SACCT=/opt/slurm/current/bin/sacct
++ [[ -x /usr/local_host/bin/sbatch ]]
++ [[ -x /opt/slurm/current/bin/squeue ]]
++ [[ -x /opt/slurm/current/bin/sacct ]]
+++ pick_real /usr/local_host/bin/sbatch sbatch
+++ local bin=/usr/local_host/bin/sbatch name=sbatch
+++ is_script /usr/local_host/bin/sbatch
+++ head -c 2 /usr/local_host/bin/sbatch
+++ grep -q '^#!'
+++ [[ -x /opt/slurm/current/bin/sbatch ]]
+++ echo /opt/slurm/current/bin/sbatch
++ REAL_SBATCH=/opt/slurm/current/bin/sbatch
+++ pick_real /opt/slurm/current/bin/squeue squeue
+++ local bin=/opt/slurm/current/bin/squeue name=squeue
+++ is_script /opt/slurm/current/bin/squeue
+++ head -c 2 /opt/slurm/current/bin/squeue
+++ grep -q '^#!'
+++ echo /opt/slurm/current/bin/squeue
++ REAL_SQUEUE=/opt/slurm/current/bin/squeue
+++ pick_real /opt/slurm/current/bin/sacct sacct
+++ local bin=/opt/slurm/current/bin/sacct name=sacct
+++ is_script /opt/slurm/current/bin/sacct
+++ head -c 2 /opt/slurm/current/bin/sacct
+++ grep -q '^#!'
+++ echo /opt/slurm/current/bin/sacct
++ REAL_SACCT=/opt/slurm/current/bin/sacct
++ echo 'Using sbatch: /opt/slurm/current/bin/sbatch'
+Using sbatch: /opt/slurm/current/bin/sbatch
++ echo 'Using squeue: /opt/slurm/current/bin/squeue'
+Using squeue: /opt/slurm/current/bin/squeue
++ echo 'Using sacct : /opt/slurm/current/bin/sacct'
+Using sacct : /opt/slurm/current/bin/sacct
+++ scontrol show config
+++ awk -F= '/SlurmPluginDir/ {gsub(/[[:space:]]/,"",$2); print $2}'
++ SLURM_PLUGIN_DIR=
++ [[ -z '' ]]
++ SLURM_PLUGIN_DIR=/opt/slurm/22.05.10/lib/slurm
++ echo 'SlurmPluginDir: /opt/slurm/22.05.10/lib/slurm'
+SlurmPluginDir: /opt/slurm/22.05.10/lib/slurm
++ B=()
++ MOUNTED_DSTS='|'
+++ dirname /usr/local_host/bin/sbatch
+++ dirname /usr/local_host/bin/sbatch
++ add_bind /usr/local_host/bin /usr/local_host/bin
++ local src=/usr/local_host/bin dst=/usr/local_host/bin
++ [[ -e /usr/local_host/bin ]]
++ [[ | != *\|\/\u\s\r\/\l\o\c\a\l\_\h\o\s\t\/\b\i\n\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/usr/local_host/bin|'
+++ dirname /opt/slurm/current/bin/squeue
+++ dirname /opt/slurm/current/bin/squeue
++ add_bind /opt/slurm/current/bin /opt/slurm/current/bin
++ local src=/opt/slurm/current/bin dst=/opt/slurm/current/bin
++ [[ -e /opt/slurm/current/bin ]]
++ [[ |/usr/local_host/bin| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\b\i\n\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/opt/slurm/current/bin|'
+++ dirname /opt/slurm/current/bin/sacct
+++ dirname /opt/slurm/current/bin/sacct
++ add_bind /opt/slurm/current/bin /opt/slurm/current/bin
++ local src=/opt/slurm/current/bin dst=/opt/slurm/current/bin
++ [[ -e /opt/slurm/current/bin ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\b\i\n\|* ]]
++ add_bind /opt/slurm/current/bin /opt/slurm/current/bin
++ local src=/opt/slurm/current/bin dst=/opt/slurm/current/bin
++ [[ -e /opt/slurm/current/bin ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\b\i\n\|* ]]
++ add_bind /etc/slurm /etc/slurm
++ local src=/etc/slurm dst=/etc/slurm
++ [[ -e /etc/slurm ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin| != *\|\/\e\t\c\/\s\l\u\r\m\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/etc/slurm|'
++ add_bind /opt/slurm/current /opt/slurm/current
++ local src=/opt/slurm/current dst=/opt/slurm/current
++ [[ -e /opt/slurm/current ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/opt/slurm/current|'
++ add_bind /opt/slurm/22.05.10/lib/slurm /opt/slurm/22.05.10/lib/slurm
++ local src=/opt/slurm/22.05.10/lib/slurm dst=/opt/slurm/22.05.10/lib/slurm
++ [[ -e /opt/slurm/22.05.10/lib/slurm ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current| != *\|\/\o\p\t\/\s\l\u\r\m\/\2\2\.\0\5\.\1\0\/\l\i\b\/\s\l\u\r\m\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/opt/slurm/22.05.10/lib/slurm|'
++ add_bind /etc/munge /etc/munge
++ local src=/etc/munge dst=/etc/munge
++ [[ -e /etc/munge ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm| != *\|\/\e\t\c\/\m\u\n\g\e\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/etc/munge|'
++ add_bind /run/munge /run/munge
++ local src=/run/munge dst=/run/munge
++ [[ -e /run/munge ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge| != *\|\/\r\u\n\/\m\u\n\g\e\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/run/munge|'
++ add_bind /usr/local_rwth/bin /usr/local_rwth/bin
++ local src=/usr/local_rwth/bin dst=/usr/local_rwth/bin
++ [[ -e /usr/local_rwth/bin ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge| != *\|\/\u\s\r\/\l\o\c\a\l\_\r\w\t\h\/\b\i\n\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/usr/local_rwth/bin|'
++ add_bind /etc/passwd /etc/passwd
++ local src=/etc/passwd dst=/etc/passwd
++ [[ -e /etc/passwd ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin| != *\|\/\e\t\c\/\p\a\s\s\w\d\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/etc/passwd|'
++ add_bind /etc/group /etc/group
++ local src=/etc/group dst=/etc/group
++ [[ -e /etc/group ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd| != *\|\/\e\t\c\/\g\r\o\u\p\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/etc/group|'
++ add_bind /hpcwork/mk696056 /hpcwork/mk696056
++ local src=/hpcwork/mk696056 dst=/hpcwork/mk696056
++ [[ -e /hpcwork/mk696056 ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group| != *\|\/\h\p\c\w\o\r\k\/\m\k\6\9\6\0\5\6\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/hpcwork/mk696056|'
++ add_bind /hpcwork/mk696056/speemo_md_0.005 /workspace
++ local src=/hpcwork/mk696056/speemo_md_0.005 dst=/workspace
++ [[ -e /hpcwork/mk696056/speemo_md_0.005 ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056| != *\|\/\w\o\r\k\s\p\a\c\e\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/workspace|'
++ add_bind /hpcwork/mk696056/speemo_md_0.005/data /workspace/data
++ local src=/hpcwork/mk696056/speemo_md_0.005/data dst=/workspace/data
++ [[ -e /hpcwork/mk696056/speemo_md_0.005/data ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056|/workspace| != *\|\/\w\o\r\k\s\p\a\c\e\/\d\a\t\a\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/workspace/data|'
++ add_bind /hpcwork/mk696056/speemo_md_0.005/models /workspace/models
++ local src=/hpcwork/mk696056/speemo_md_0.005/models dst=/workspace/models
++ [[ -e /hpcwork/mk696056/speemo_md_0.005/models ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056|/workspace|/workspace/data| != *\|\/\w\o\r\k\s\p\a\c\e\/\m\o\d\e\l\s\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/workspace/models|'
+++ discover_ldirs /opt/slurm/current/bin/sbatch
+++ sort -u
+++ ldd /opt/slurm/current/bin/sbatch
+++ awk '/=>/ && $3 ~ /^\// {print $3}'
+++ xargs -r -n1 dirname
+++ sort -u
+++ discover_ldirs /opt/slurm/current/bin/squeue
+++ ldd /opt/slurm/current/bin/squeue
+++ awk '/=>/ && $3 ~ /^\// {print $3}'
+++ xargs -r -n1 dirname
+++ sort -u
+++ discover_ldirs /opt/slurm/current/bin/sacct
+++ ldd /opt/slurm/current/bin/sacct
+++ awk '/=>/ && $3 ~ /^\// {print $3}'
+++ xargs -r -n1 dirname
+++ sort -u
++ SLURM_LIB_DIRS='/lib64
+/opt/slurm/22.05.10/lib/slurm'
++ FILTER_OUT_REGEX='^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/))'
++ SAFE_LIB_DIRS=
++ for d in $SLURM_LIB_DIRS
++ add_safe /lib64
++ local d=/lib64
++ [[ -n /lib64 ]]
++ [[ -d /lib64 ]]
++ [[ /lib64 =~ ^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/)) ]]
++ return 0
++ for d in $SLURM_LIB_DIRS
++ add_safe /opt/slurm/22.05.10/lib/slurm
++ local d=/opt/slurm/22.05.10/lib/slurm
++ [[ -n /opt/slurm/22.05.10/lib/slurm ]]
++ [[ -d /opt/slurm/22.05.10/lib/slurm ]]
++ [[ /opt/slurm/22.05.10/lib/slurm =~ ^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/)) ]]
++ [[ :: == *\:\/\o\p\t\/\s\l\u\r\m\/\2\2\.\0\5\.\1\0\/\l\i\b\/\s\l\u\r\m\:* ]]
++ SAFE_LIB_DIRS=/opt/slurm/22.05.10/lib/slurm
++ add_safe /opt/slurm/current/lib64
++ local d=/opt/slurm/current/lib64
++ [[ -n /opt/slurm/current/lib64 ]]
++ [[ -d /opt/slurm/current/lib64 ]]
++ [[ /opt/slurm/current/lib64 =~ ^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/)) ]]
++ [[ :/opt/slurm/22.05.10/lib/slurm: == *\:\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\l\i\b\6\4\:* ]]
++ SAFE_LIB_DIRS=/opt/slurm/22.05.10/lib/slurm:/opt/slurm/current/lib64
++ add_safe /opt/slurm/current/lib
++ local d=/opt/slurm/current/lib
++ [[ -n /opt/slurm/current/lib ]]
++ [[ -d /opt/slurm/current/lib ]]
++ [[ /opt/slurm/current/lib =~ ^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/)) ]]
++ [[ :/opt/slurm/22.05.10/lib/slurm:/opt/slurm/current/lib64: == *\:\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\l\i\b\:* ]]
++ SAFE_LIB_DIRS=/opt/slurm/22.05.10/lib/slurm:/opt/slurm/current/lib64:/opt/slurm/current/lib
+++ ldd /opt/slurm/current/bin/sbatch
+++ awk '/libslurmfull/ {print $3}'
+++ xargs -r dirname
++ LIBSLURM_DIR=/opt/slurm/22.05.10/lib/slurm
++ [[ -n /opt/slurm/22.05.10/lib/slurm ]]
++ add_safe /opt/slurm/22.05.10/lib/slurm
++ local d=/opt/slurm/22.05.10/lib/slurm
++ [[ -n /opt/slurm/22.05.10/lib/slurm ]]
++ [[ -d /opt/slurm/22.05.10/lib/slurm ]]
++ [[ /opt/slurm/22.05.10/lib/slurm =~ ^(/lib($|/)|/lib64($|/)|/usr/lib($|/)|/usr/lib64($|/)) ]]
++ [[ :/opt/slurm/22.05.10/lib/slurm:/opt/slurm/current/lib64:/opt/slurm/current/lib: == *\:\/\o\p\t\/\s\l\u\r\m\/\2\2\.\0\5\.\1\0\/\l\i\b\/\s\l\u\r\m\:* ]]
++ IFS=:
++ read -r -a _libarr
++ for d in "${_libarr[@]}"
++ add_bind /opt/slurm/22.05.10/lib/slurm /opt/slurm/22.05.10/lib/slurm
++ local src=/opt/slurm/22.05.10/lib/slurm dst=/opt/slurm/22.05.10/lib/slurm
++ [[ -e /opt/slurm/22.05.10/lib/slurm ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056|/workspace|/workspace/data|/workspace/models| != *\|\/\o\p\t\/\s\l\u\r\m\/\2\2\.\0\5\.\1\0\/\l\i\b\/\s\l\u\r\m\|* ]]
++ for d in "${_libarr[@]}"
++ add_bind /opt/slurm/current/lib64 /opt/slurm/current/lib64
++ local src=/opt/slurm/current/lib64 dst=/opt/slurm/current/lib64
++ [[ -e /opt/slurm/current/lib64 ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056|/workspace|/workspace/data|/workspace/models| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\l\i\b\6\4\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/opt/slurm/current/lib64|'
++ for d in "${_libarr[@]}"
++ add_bind /opt/slurm/current/lib /opt/slurm/current/lib
++ local src=/opt/slurm/current/lib dst=/opt/slurm/current/lib
++ [[ -e /opt/slurm/current/lib ]]
++ [[ |/usr/local_host/bin|/opt/slurm/current/bin|/etc/slurm|/opt/slurm/current|/opt/slurm/22.05.10/lib/slurm|/etc/munge|/run/munge|/usr/local_rwth/bin|/etc/passwd|/etc/group|/hpcwork/mk696056|/workspace|/workspace/data|/workspace/models|/opt/slurm/current/lib64| != *\|\/\o\p\t\/\s\l\u\r\m\/\c\u\r\r\e\n\t\/\l\i\b\|* ]]
++ B+=(-B "$src:$dst")
++ MOUNTED_DSTS+='/opt/slurm/current/lib|'
++ WRAP_DIR=/hpcwork/mk696056/speemo_md_0.005/.slurmwrap
++ mkdir -p /hpcwork/mk696056/speemo_md_0.005/.slurmwrap /hpcwork/mk696056/speemo_md_0.005/.slurmwrap/lib
+++ /usr/sbin/ldconfig -p
+++ awk '/liblua-?5\.4\.so/ {print $NF; exit}'
++ HOST_LIBLUA=/lib64/liblua-5.4.so

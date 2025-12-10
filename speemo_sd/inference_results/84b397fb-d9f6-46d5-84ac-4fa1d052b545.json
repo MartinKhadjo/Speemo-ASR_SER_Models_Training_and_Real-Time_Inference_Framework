@@ -1,0 +1,29 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 0.93,
+      "transcription": "AL MAN",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 1.56,
+      "end_sec": 3.33,
+      "transcription": "THIS WAS SO EMBARASING",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 4.08,
+      "end_sec": 6.36,
+      "transcription": "I DIDN'T NOT AT IT WIL GO SO WRONG",
+      "emotion": "neutral"
+    },
+    {
+      "start_sec": 7.2,
+      "end_sec": 9.0,
+      "transcription": "I FEL SO SORY FOR DIT",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\84b397fb-d9f6-46d5-84ac-4fa1d052b545.json"
+}

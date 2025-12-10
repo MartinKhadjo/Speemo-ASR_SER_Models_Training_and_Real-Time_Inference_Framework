@@ -1,0 +1,3 @@
+[DIST] MASTER_ADDR=w23g0004 MASTER_PORT=29500 NNODES=1 GPUS_PER_NODE=1
+[PRE] Running preprocessing with flags: skip_asr=off, skip_ser=off, skip_splitting=off
+Resolved Slurm tools at startup: ('/usr/bin/sbatch', '/usr/bin/squeue', '/usr/bin/sacct') HPCWORK= None

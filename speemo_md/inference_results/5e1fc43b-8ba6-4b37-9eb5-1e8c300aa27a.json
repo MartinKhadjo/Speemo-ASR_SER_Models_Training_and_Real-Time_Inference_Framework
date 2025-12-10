@@ -1,0 +1,6 @@
+{
+  "transcription": "LONDON SCHOL OF HYDING AND TROPICAL MEDICINE HOUSE RELEASE RESEARCH WHICH SAYS THAT NEARLY UNDHEAT RELAED DETHS ARE EXPECED IN THE UK",
+  "emotion": "fear",
+  "output_file": "inference_results\\5e1fc43b-8ba6-4b37-9eb5-1e8c300aa27a.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_ASR_SER"
+}

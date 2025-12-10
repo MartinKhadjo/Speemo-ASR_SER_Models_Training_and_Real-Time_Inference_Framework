@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 7.785375,
+      "transcription": "ich habe ihn extra gesagt das er lernen sol und er hat es nicht gemacht und jetzt kriegt er die quitung daf\u00fcr ja",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\d428d73f-a7b6-42d0-b98d-a9a73eef4642.json"
+}

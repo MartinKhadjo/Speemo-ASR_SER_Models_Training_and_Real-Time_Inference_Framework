@@ -1,0 +1,13 @@
+# Exclude big data, models, and archives
+data/
+models/
+Archive/
+docs/
+logs/
+links/
+
+# Exclude logs, caches, Git, Python bytecode
+logs/
+__pycache__/
+*.pyc
+.git/

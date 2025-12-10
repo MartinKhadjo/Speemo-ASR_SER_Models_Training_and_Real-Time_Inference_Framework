@@ -1,0 +1,11 @@
+{
+  "segments": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 6.26,
+      "transcription": "WHY THIS IS SO UGLY I CANOT BELIEVE YOURE DOING THAT AH",
+      "emotion": "neutral"
+    }
+  ],
+  "output_file": "inference_results\\48f73524-fa55-4489-8ed5-f9bab546e84a.json"
+}

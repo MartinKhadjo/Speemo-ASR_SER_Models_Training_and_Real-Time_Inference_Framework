@@ -1,0 +1,117 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%files
+    # only code + web assets, no big data/checkpoints
+    requirements.txt            /workspace/
+    run.py                      /workspace/
+    main_app.py                 /workspace/
+    Dockerfile                  /workspace/
+    processing_graph.py         /workspace/
+    process_audio               /workspace/process_audio
+    src                         /workspace/src
+    templates                   /workspace/templates
+    static                      /workspace/static
+    # NOTE: we intentionally do NOT copy:
+    #   - data/
+    #   - models/
+    #   - logs/
+    #   - inference_results/
+    #   - hf_cache/
+    # These live on $HPCWORK and are bind-mounted at runtime.
+
+%post
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+
+    # --- Base OS packages (audio/build/ffmpeg/cmake) ---
+    apt-get update && apt-get install -y --no-install-recommends \
+        python3-pip python3-dev python3-venv \
+        build-essential git curl ca-certificates \
+        libsndfile1 libsndfile1-dev \
+        ffmpeg cmake pkg-config \
+        liblua5.4-0 \
+        libboost-all-dev zlib1g-dev libbz2-dev liblzma-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+    # --- Python bootstrap ---
+    python3 -m pip install --upgrade pip setuptools wheel
+    python3 -m pip config set global.no-cache-dir true || true
+    python3 -m pip config set global.disable-pip-version-check true || true
+
+    cd /workspace
+
+    # Ensure a writable Numba cache inside the image (also bind-mounted on HPC)
+    mkdir -p /workspace/.numba_cache
+
+    # =========================================================
+    # 1) Install GPU PyTorch for CUDA 12.1  (use latest cu121 wheel)
+    # =========================================================
+    # IMPORTANT: do NOT pin torch==2.6.0 here – the cu121 index only has up to 2.5.1+cu121.
+    pip install --no-cache-dir \
+      --index-url https://download.pytorch.org/whl/cu121 \
+      torch torchvision torchaudio
+
+    # Just print the installed version (no hard failure on <2.6.0)
+    python3 - << 'PY'
+import torch
+print(">>> Installed torch:", torch.__version__, "CUDA:", torch.version.cuda)
+PY
+
+    # =========================================================
+    # 2) Install the rest of your requirements, WITHOUT touching torch*
+    # =========================================================
+    grep -Ev '^(torch|torchaudio|torchvision)(==|$)' requirements.txt > /tmp/req.no-torch.txt || true
+    pip install --no-cache-dir -r /tmp/req.no-torch.txt
+
+    # Pin accelerate so it's compatible with transformers 4.56.x
+    # (fixes: Accelerator.__init__() got an unexpected keyword argument 'dispatch_batches')
+    pip install --no-cache-dir "accelerate==0.29.3"
+
+    # =========================================================
+    # 3) Runtime server + kenlm (wheel if available, else source)
+    # =========================================================
+    pip install --no-cache-dir eventlet
+    python3 - << 'PY' || pip install --no-cache-dir "kenlm @ https://github.com/kpu/kenlm/archive/master.zip"
+try:
+    import kenlm  # noqa
+    print("kenlm wheel present")
+except Exception:
+    raise SystemExit(1)
+PY
+
+    # Keep transformers and peft in a range that works with recent torch
+    # and avoids the EncoderDecoderCache import issue.
+    pip install --no-cache-dir "safetensors<0.5.0" "transformers>=4.33,<4.57" "peft==0.10.0"
+
+    # =========================================================
+    # 4) Build-time sanity print (helps detect accidental downgrades)
+    # =========================================================
+    python3 - << 'PY'
+import importlib, torch, transformers, accelerate
+print(">>> FINAL torch:", torch.__version__, "CUDA:", torch.version.cuda)
+print(">>> transformers:", transformers.__version__)
+print(">>> accelerate:", accelerate.__version__)
+pt = importlib.import_module("torch.utils._pytree")
+print(">>> pytree has register_pytree_node:", hasattr(pt, "register_pytree_node"))
+PY
+
+%environment
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+    export PYTHONUNBUFFERED=1
+    export PATH=/usr/local/bin:$PATH
+    export PYTHONNOUSERSITE=1
+    unset PYTHONPATH
+    # HF cache (TRANSFORMERS_CACHE is deprecated; HF_HOME is enough)
+    export HF_HOME=/workspace/.cache/huggingface
+    # Default writable Numba cache inside /workspace
+    export NUMBA_CACHE_DIR=/workspace/.numba_cache
+
+%labels
+    Author  mk696056
+    Version 0.2.0
+    Source  https://github.com/MartinKhadjo/Speemo_ASR_SER_Models_for_Audio_Files_and_Real_Time_Inference
+
+%runscript
+    exec python3 /workspace/run.py "$@"

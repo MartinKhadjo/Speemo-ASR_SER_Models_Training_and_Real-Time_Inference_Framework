@@ -1,0 +1,6 @@
+WARNING: While bind mounting '/hpcwork/mk696056:/hpcwork/mk696056': destination is already in the mount point list
+WARNING: While bind mounting '/workspace:/workspace': destination is already in the mount point list
+WARNING: skipping mount of /workspace/.slurmwrap/lib/libmunge.so.2: stat /workspace/.slurmwrap/lib/libmunge.so.2: no such file or directory
+INFO:    Terminating squashfuse_ll after timeout
+INFO:    Timeouts can be caused by a running background process
+FATAL:   container creation failed: mount hook function failure: mount /workspace/data->/workspace/data error: while mounting /workspace/data: mount source /workspace/data doesn't exist

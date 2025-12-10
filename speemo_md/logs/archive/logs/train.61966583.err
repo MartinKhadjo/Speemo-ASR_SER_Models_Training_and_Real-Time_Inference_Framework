@@ -1,0 +1,23 @@
+/usr/local/lib/python3.10/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Some weights of Wav2Vec2ForCTC were not initialized from the model checkpoint at models/pretrained/en and are newly initialized: ['wav2vec2.masked_spec_embed']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/usr/local/lib/python3.10/dist-packages/transformers/models/wav2vec2/modeling_wav2vec2.py:1823: FutureWarning: The method `freeze_feature_extractor` is deprecated and will be removed in Transformers v5. Please use the equivalent `freeze_feature_encoder` method instead.
+  warnings.warn(
+Using auto half precision backend
+***** Running training *****
+  Num examples = 31,992
+  Num Epochs = 12
+  Instantaneous batch size per device = 8
+  Total train batch size (w. parallel, distributed & accumulation) = 32
+  Gradient Accumulation steps = 4
+  Total optimization steps = 12,000
+  Number of trainable parameters = 589,824
+Using EarlyStoppingCallback without load_best_model_at_end=True. Once training is finished, the best model will not be loaded automatically.
+  0%|          | 0/12000 [00:00<?, ?it/s][rank0]:[W reducer.cpp:1389] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+srun: Job step aborted: Waiting up to 92 seconds for job step to finish.
+  0%|          | 1/12000 [00:04<16:16:37,  4.88s/it]                                                      0%|          | 1/12000 [00:04<16:16:37,  4.88s/it]  0%|          | 2/12000 [00:05<7:05:37,  2.13s/it]   0%|          | 3/12000 [00:05<4:08:25,  1.24s/it]  0%|          | 4/12000 [00:05<2:45:25,  1.21it/s]  0%|          | 5/12000 [00:05<1:58:32,  1.69it/s]  0%|          | 6/12000 [00:05<1:29:31,  2.23it/s]  0%|          | 7/12000 [00:06<1:13:49,  2.71it/s]  0%|          | 8/12000 [00:06<1:06:02,  3.03it/s]  0%|          | 9/12000 [00:06<56:03,  3.57it/s]    0%|          | 10/12000 [00:06<51:04,  3.91it/s]  0%|          | 11/12000 [00:06<45:25,  4.40it/s]slurmstepd: error: *** STEP 61966583.0 ON n23g0027 CANCELLED AT 2025-10-29T11:25:57 ***
+slurmstepd: error: *** JOB 61966583 ON n23g0027 CANCELLED AT 2025-10-29T11:25:57 ***
+W1029 11:25:57.500000 22825201635968 torch/distributed/elastic/agent/server/api.py:741] Received Signals.SIGTERM death signal, shutting down workers
+W1029 11:25:57.500000 22825201635968 torch/distributed/elastic/multiprocessing/api.py:851] Sending process 35698 closing signal SIGTERM

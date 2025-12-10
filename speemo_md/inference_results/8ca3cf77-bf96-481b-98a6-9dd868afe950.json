@@ -1,0 +1,6 @@
+{
+  "transcription": "es tut mir leid was ich gestern gesagt hab das war nich in ordnung von mir ich werde darüber nachdenken",
+  "emotion": "sad",
+  "output_file": "inference_results\\8ca3cf77-bf96-481b-98a6-9dd868afe950.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_de_10"
+}

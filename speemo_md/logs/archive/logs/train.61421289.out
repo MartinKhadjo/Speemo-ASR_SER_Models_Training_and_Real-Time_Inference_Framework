@@ -1,0 +1,65 @@
+[DIST] MASTER_ADDR=w23g0010 MASTER_PORT=29500 NNODES=1 GPUS_PER_NODE=1
+[PRE] Skipping all preprocessing (skip_preprocessing=on or all per-step toggles are 'on')
+[TRAIN][ASR] Starting ASR phase ...
+[Setup] Using device: cuda
+[Setup] no_cuda flag set to: False
+[ASR] Loading model + processor…
+[ASR] Starting from pretrained: models/pretrained/en
+trainable params: 589,824 || all params: 94,986,144 || trainable%: 0.6210
+[ASR] Trainable parameters: 589824 / 94986144
+🛠️  Debug collator output shapes: {'input_values': torch.Size([4, 75264]), 'attention_mask': torch.Size([4, 75264]), 'labels': torch.Size([4, 93])}
+[ASR] Starting training with HuggingFace Trainer…
+w23g0010:3911702:3911702 [0] NCCL INFO Bootstrap : Using ib0:134.61.46.239<0>
+w23g0010:3911702:3911702 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+w23g0010:3911702:3911702 [0] NCCL INFO cudaDriverVersion 12080
+NCCL version 2.20.5+cuda12.4
+w23g0010:3911702:3911753 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib0:134.61.46.239<0>
+w23g0010:3911702:3911753 [0] NCCL INFO Using non-device net plugin version 0
+w23g0010:3911702:3911753 [0] NCCL INFO Using network IB
+w23g0010:3911702:3911753 [0] NCCL INFO DMA-BUF is available on GPU device 0
+w23g0010:3911702:3911753 [0] NCCL INFO comm 0x55737dbcda30 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId ad000 commId 0x4711bd0e13cb9157 - Init START
+w23g0010:3911702:3911753 [0] NCCL INFO comm 0x55737dbcda30 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 00/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 01/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 02/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 03/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 04/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 05/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 06/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 07/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 08/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 09/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 10/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 11/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 12/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 13/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 14/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 15/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 16/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 17/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 18/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 19/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 20/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 21/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 22/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 23/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 24/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 25/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 26/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 27/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 28/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 29/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 30/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Channel 31/32 :    0
+w23g0010:3911702:3911753 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+w23g0010:3911702:3911753 [0] NCCL INFO P2P Chunksize set to 131072
+w23g0010:3911702:3911753 [0] NCCL INFO Connected all rings
+w23g0010:3911702:3911753 [0] NCCL INFO Connected all trees
+w23g0010:3911702:3911753 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+w23g0010:3911702:3911753 [0] NCCL INFO comm 0x55737dbcda30 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId ad000 commId 0x4711bd0e13cb9157 - Init COMPLETE
+{'loss': 2.1461, 'grad_norm': 2.9785549640655518, 'learning_rate': 0.0, 'epoch': 0.0}
+{'loss': 1.6782, 'grad_norm': 4.435503959655762, 'learning_rate': 2.4256064016004e-07, 'epoch': 0.03}
+{'loss': 1.6988, 'grad_norm': 3.6131515502929688, 'learning_rate': 4.901225306326582e-07, 'epoch': 0.05}
+{'loss': 1.6535, 'grad_norm': 2.4226059913635254, 'learning_rate': 7.401850462615655e-07, 'epoch': 0.08}
+{'loss': 1.5791, 'grad_norm': 1.7691564559936523, 'learning_rate': 9.902475618904727e-07, 'epoch': 0.1}
+{'loss': 1.5501, 'grad_norm': 3.2282376289367676, 'learning_rate': 1.2378094523630909e-06, 'epoch': 0.13}

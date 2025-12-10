@@ -1,0 +1,6 @@
+{
+  "transcription": "ING G",
+  "emotion": "happy",
+  "output_file": "inference_results\\c6269f51-1c34-42b1-9301-df654cdee4e1.json",
+  "model_choice": "speemo_md_HPC_SLURM_Training_BS32_ASR_SER"
+}
